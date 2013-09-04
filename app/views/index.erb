@@ -4,15 +4,16 @@
   <% @notes.each do |note| %>
     <p> Title: <%= note.title %> (<%= note.id %>)</p> 
     <p> Description: <%= note.content %></p>
-    <form method="post" action="/edit/<%= note.id %>">
+    <form method="get" action="/editable_notes/<%= note.id %>">
       <input type="submit" value="edit" name="edit">
     </form>
-    <form method="post" action="/delete/<%= note.id %>">
+    <form method="post" action="/notes/<%= note.id %>">
+      <input name="_method" type="hidden" value="delete">
       <input type="submit" value="delete" name="delete">
     </form>
   <% end %> 
   <br><br>
-  <form action="/new" method="post">
+  <form action="/notes" method="post">
     <p>+ New Note:</p> 
     <input type="text" name="title" placeholder="Title">
     <p><textarea rows="4" cols="50" name="content" placeholder="Enter description here..."></textarea></p> 

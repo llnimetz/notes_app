@@ -1,9 +1,8 @@
 <div class="container">
   <h1>Edit Note</h1>
 
-  <p><%= @note_to_edit.title %></p>
-
-  <form method="post" action="/update/<%= @note_to_edit.id %>">
+  <form method="post" action="/notes/<%= @note_to_edit.id %>">
+  	<input name="_method" type="hidden" value="put">
     <p>Title:<input type="text" name="title" value="<%= @note_to_edit.title %>"></p>
     <p>Description:<textarea rows="4" cols="50" name="content">
       <%= @note_to_edit.content %>

@@ -3,25 +3,20 @@ get '/' do
   erb :index
 end
 
-post '/new' do
+get '/editable_notes/:id' do
+  @note_to_edit = Note.find_by_id(params[:id])
+  erb :edit
+end
+
+
+post '/notes' do
   new_note = Note.new(title: params[:title], content: params[:content])
   new_note.save
   redirect "/"
 end
 
 
-post '/edit/:id' do
-  @note_to_edit = Note.find_by_id(params[:id])
-  erb :edit
-end
-
-
-post '/delete/:id' do
-  @note_to_delete = Note.destroy(params[:id])
-  redirect '/'
-end
-
-post '/update/:id' do
+put '/notes/:id' do
   @note_to_update = Note.find_by_id(params[:id])
   @note_to_update.title = "#{params[:title]}"
   @note_to_update.content = "#{params[:content]}"
@@ -30,4 +25,10 @@ post '/update/:id' do
   else
   	erb :edit
   end
+end
+
+
+delete '/notes/:id' do
+  @note_to_delete = Note.destroy(params[:id])
+  redirect '/'
 end
