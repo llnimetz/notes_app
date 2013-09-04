@@ -4,7 +4,7 @@
   <% @notes.each do |note| %>
     <p> Title: <%= note.title %> (<%= note.id %>)</p> 
     <p> Description: <%= note.content %></p>
-    <form method="get" action="/editable_notes/<%= note.id %>">
+    <form method="get" action="/notes/<%= note.id %>/edit">
       <input type="submit" value="edit" name="edit">
     </form>
     <form method="post" action="/notes/<%= note.id %>">

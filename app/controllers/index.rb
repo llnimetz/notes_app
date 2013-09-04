@@ -3,7 +3,7 @@ get '/' do
   erb :index
 end
 
-get '/editable_notes/:id' do
+get '/notes/:id/edit' do
   @note_to_edit = Note.find_by_id(params[:id])
   erb :edit
 end
